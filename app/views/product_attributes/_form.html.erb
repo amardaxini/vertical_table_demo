@@ -1,0 +1,48 @@
+<% form_for [@product,@product_attribute] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :option_type %>
+    <%= f.select(:option_type,ProductAttribute::DISPLAY_TYPES)%>
+    </p>
+    <div id="data_row" >
+      <div id="options">
+      
+        <%= render :partial => 'option', :collection => @product_attribute.option %>
+      </div>
+      <div class='add_option'>
+        <%= label_tag "" %>
+        <%= link_to_function "Add answer option", :class => 'add_new' do |page| 
+            page.insert_html  'bottom','options', :partial => 'option', :locals => { :answer_option => "" }
+        end %>
+      </div>
+    </div>  
+  <%= f.label :is_searchable %>
+  <%=  f.check_box :is_searchable %>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+<script type="text/javascript">
+    $(document).ready(function() {
+   $('.add_option').hide();
+   select_value = $("#product_attribute_option_type").val();
+   if (select_value == 'drop_down' || select_value == 'multi_select')
+   {
+    $('.add_option').show();
+    }
+
+      // Hide the attribute options if type is text or checkbox
+      $("#product_attribute_option_type").change(function(event){
+         if (this.value == 'drop_down' || this.value == 'multi_select') { 
+           $('#data_row').show();
+           $('.add_option').show();
+         } else {
+           $('#data_row').hide();
+           $('.add_option').hide();
+         };
+       });
+
+    });
+  </script>  

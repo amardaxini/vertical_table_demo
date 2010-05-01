@@ -1,0 +1,8 @@
+<% title "Edit Item" %>
+
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to "Show", product_item_path(@product,@item)%> |
+  <%= link_to "View All", product_items_path(@product) %>
+</p>

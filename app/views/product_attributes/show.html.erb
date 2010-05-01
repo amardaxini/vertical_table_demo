@@ -1,0 +1,20 @@
+<% title "Product Attribute" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @product_attribute.name %>
+</p>
+<p>
+  <strong>Option Type:</strong>
+  <%=h @product_attribute.option_type %>
+</p>
+<p>
+  <strong>Option:</strong>
+  <%=h @product_attribute.option %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_product_product_attribute_path(@product,@product_attribute) %> |
+  <%= link_to "Destroy", product_product_attribute_path(@product,@product_attribute), :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", product_product_attributes_path(@product) %>
+</p>

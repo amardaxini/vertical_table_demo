@@ -1,0 +1,21 @@
+<% title "Item" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @item.name %>
+  <%= image_tag @item.avatar.url(:medium) %>
+</p>
+<p>
+  <strong>Is Active:</strong>
+  <%=h @item.is_active %>
+</p>
+<% @item.item_attributes.each do |item_attr| %>
+  <%= item_attr.name %>
+  <%= item_attr.value %>
+  <br />
+<% end %>
+<p>
+  <%= link_to "Edit", edit_product_item_path(@product,@item) %> |
+  <%= link_to "Destroy", product_item_path(@product,@item), :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", product_items_path %>
+</p>

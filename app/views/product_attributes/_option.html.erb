@@ -1,0 +1,5 @@
+<div class="option">
+  <%= label_tag "option" %>
+  <%= text_field_tag 'product_attribute[option][]', option, :class => 'textfields' %> 
+  <%= link_to_function image_tag('delete_10.png'), "$(this).parent('.option').blindUp('fast').remove()" %>
+</div>

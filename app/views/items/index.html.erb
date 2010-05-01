@@ -1,0 +1,23 @@
+<% title "Items" %>
+
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Is Active</th>
+      <th width="30"></th>
+    </tr>
+  </thead>
+  <tbody>  
+    <% for item in @items %>
+      <tr>
+        <td><%=link_to item.name,product_item_path(@product,item) %></td>
+        <td><%=h item.is_active %></td>
+        <td><%= link_to image_tag('/images/edit_10.png', :border => "0"), edit_product_item_path(@product,item) %>
+        <%= link_to image_tag('/images/delete_10.png', :border => "0"), product_item_path(@product,item), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>  
+</table>
+
+<p><%= link_to "New Item", new_product_item_path(@product) %></p>

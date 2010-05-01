@@ -1,0 +1,26 @@
+<% title "Product Attributes" %>
+
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Option Type</th>
+      <th>Option</th>
+      <th width="30"></th>
+    </tr>
+   </thead>
+   <tbody> 
+     <% for product_attribute in @product_attributes %>
+      <tr>
+        <td>
+          <%=link_to product_attribute.name, product_product_attribute_path(@product,product_attribute) %>
+        </td>
+        <td><%=h product_attribute.option_type %></td>
+        <td><%= attribute_options(product_attribute) %> </td>
+        <td><%= link_to image_tag('/images/edit_10.png', :border => "0"), edit_product_product_attribute_path(@product,product_attribute) %>
+        <%= link_to image_tag('/images/delete_10.png', :border => "0"), product_product_attribute_path(@product,product_attribute), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+</table>
+
+<p><%= link_to "New Product Attribute", new_product_product_attribute_path(@product) %></p>

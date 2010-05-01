@@ -1,0 +1,19 @@
+<% form_for [@product,@item], :html => {:multipart => true }do |form| %>
+  <%= form.error_messages %>
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+  </p>
+    Image <%= form.file_field :avatar %>
+    <br />
+  <% @item.item_attributes.each do |item_attribute| %>
+     <%  fields_for "item[item_attributes][]",item_attribute do |item_attribute_form| %>
+        <%= item_attribute_form.label :value,item_attribute.name %><br />
+        <%= display_answer_field(item_attribute,item_attribute_form) %> 
+    
+     <% end %>
+      <br />
+  <%end %> 
+  <p><%= form.submit "Submit" %></p>
+<% end %>

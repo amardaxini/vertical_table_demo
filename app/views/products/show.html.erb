@@ -1,0 +1,33 @@
+<% title "Product" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @product.name %>
+ 
+ </p>
+ <table class="listing">
+   <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+      </tr>
+   </thead>
+   <tbody>
+     <% @items.each do |item| %>
+       <tr>
+         <td><%=link_to image_tag(item.avatar.url(:thumb)),product_item_path(@product,item) %> </td>
+         <td><%= item.name%></td>
+       </tr>
+      <% end %>  
+   </tbody>
+ </table>  
+<% content_for :sidebar do %>
+  
+<p>
+ <%= link_to "Add attribute", product_product_attributes_path(@product) %><br />
+  <%= link_to "Item",product_items_path(@product) %><br />
+  <%= link_to "Edit", edit_product_path(@product) %> <br />
+  <%= link_to "Destroy", @product, :confirm => 'Are you sure?', :method => :delete %><br />
+  <%= link_to "View All", products_path %><br />
+</p>
+<% end %>

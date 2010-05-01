@@ -1,0 +1,30 @@
+<% title "Products" %>
+<div id="search" style="float:right;margin-bottom:5px;">
+  <% form_tag(products_path,:method=>:get) do  %>
+    <%= text_field_tag :search ,params[:search] %>
+    <%= submit_tag "Search",:name => nil %>
+  <% end %>
+</div>
+<%= clearing_span %>
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th width="30"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for product in @products %>
+      <tr>
+        <td><%= link_to product.name, product %></td>
+        <td><%= link_to "Add attribute", product_product_attributes_path(product) %></td>
+        <td><%= link_to image_tag('/images/edit_10.png', :border => "0"), edit_product_path(product) %>
+        <%= link_to image_tag('/images/delete_10.png', :border => "0"), product, :confirm => 'Are you sure?', :method => :delete %></td>
+        
+      </tr>
+    <% end %>
+   </tbody>  
+</table>
+
+<p><%= link_to "New Product", new_product_path %></p>
